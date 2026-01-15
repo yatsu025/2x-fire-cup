@@ -13,12 +13,12 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-black overflow-hidden">
-      <div className="fixed left-4 top-4 z-50 pointer-events-none">
+    <div className="min-h-screen bg-black overflow-hidden relative">
+      <div className="absolute left-4 top-4 z-50 pointer-events-none">
         <img
           src="/logo.jpeg"
           alt="Tournament Logo"
-          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full ring-2 ring-orange-500/50 shadow-xl animate-float-slow"
+          className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-full ring-2 ring-orange-500/50 shadow-xl animate-float-slow"
         />
       </div>
       <div className="fixed inset-0 opacity-50 pointer-events-none">
@@ -93,7 +93,7 @@ export default function Home() {
 
           <div className="mb-12 text-center">
             <div className="inline-block bg-gradient-to-r from-yellow-600/20 to-orange-600/20 border border-yellow-500/40 rounded-xl px-6 py-3 backdrop-blur-sm">
-              <p className="text-yellow-300 font-bold text-lg sm:text-xl">🏆 Limited Prize Pool - Register Now!</p>
+              <p className="text-yellow-300 font-bold text-lg sm:text-xl">🏆 800 rupess Prize Pool - Register Now!</p>
             </div>
           </div>
         </div>

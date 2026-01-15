@@ -176,7 +176,9 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
                 <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center text-white font-bold text-sm">
                   {idx + 1}
                 </div>
-                <span className="text-orange-200 font-bold">Player {idx + 1}</span>
+                <span className="text-orange-200 font-bold">
+                  Player {idx + 1} {idx === 3 && <span className="text-orange-300 text-xs ml-1">(Extra Player)</span>}
+                </span>
               </div>
 
               <div className="space-y-3">
@@ -207,8 +209,8 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
                     onChange={(e) => handlePlayerChange(idx, "uid", e.target.value)}
                     className="bg-black/40 border-orange-500/30 text-white placeholder:text-gray-500 focus:border-orange-400 focus:ring-orange-500/30 py-2 rounded-lg backdrop-blur-sm transition-all text-sm"
                   />
-                  {errors[`player${idx}Uid`] && (
-                    <p className="text-red-400 text-xs mt-1">{errors[`player${idx}Uid`]}</p>
+                  {errors[`player${idx}Uid `] && (
+                    <p className="text-red-400 text-xs mt-1">{errors[`player${idx}Uid `]}</p>
                   )}
                 </div>
               </div>
