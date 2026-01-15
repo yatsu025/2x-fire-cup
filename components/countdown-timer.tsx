@@ -14,8 +14,8 @@ export function CountdownTimer() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      // Registration ends at 12:00 AM on January 17th (end of January 16th)
-      const eventDate = new Date("2026-01-17T00:00:00").getTime()
+      // Registration ends at 12:00 AM on January 24th (end of January 23rd)
+      const eventDate = new Date("2026-01-24T00:00:00").getTime()
       const now = new Date().getTime()
       const difference = eventDate - now
 
@@ -48,7 +48,7 @@ export function CountdownTimer() {
           ⏰ Registration Closes In
         </p>
         <p className="text-xs sm:text-sm text-red-400/70 font-semibold tracking-wide">
-          Registration closes January 17, 2026 • 12:00 AM
+          Registration closes January 24, 2026 • 12:00 AM
         </p>
       </div>
 
