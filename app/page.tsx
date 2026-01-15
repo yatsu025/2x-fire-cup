@@ -14,6 +14,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-black overflow-hidden">
+      <div className="fixed left-4 top-4 z-50 pointer-events-none">
+        <img
+          src="/logo.jpeg"
+          alt="Tournament Logo"
+          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full ring-2 ring-orange-500/50 shadow-xl animate-float-slow"
+        />
+      </div>
       <div className="fixed inset-0 opacity-50 pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-red-600/40 rounded-full blur-3xl animate-pulse"></div>
         <div

@@ -238,99 +238,18 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
               <h3 className="text-xl font-bold text-blue-300">Registration Fee: ₹160 per team</h3>
             </div>
             
-            <div className="bg-white/95 rounded-2xl p-6 max-w-sm mx-auto shadow-2xl">
-              <div className="text-center space-y-3">
-                {/* Profile Section */}
-                <div className="flex items-center justify-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center">
-                    <span className="text-white text-xl">👤</span>
-                  </div>
-                  <div className="text-left">
-                    <div className="flex items-center gap-2">
-                      <span className="text-gray-800 font-bold text-lg">Yash Srivastava</span>
-                      <div className="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs">✓</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* QR Code */}
-                <div className="bg-white border-4 border-blue-400 rounded-2xl p-4 shadow-lg">
-                  <div className="w-48 h-48 mx-auto bg-white flex items-center justify-center border-2 border-gray-200 rounded-lg">
-                    {/* QR Code Pattern */}
-                    <div className="w-full h-full bg-white relative overflow-hidden rounded-lg">
-                      <svg viewBox="0 0 200 200" className="w-full h-full">
-                        {/* QR Code pattern - simplified representation */}
-                        <rect x="10" y="10" width="30" height="30" fill="black"/>
-                        <rect x="160" y="10" width="30" height="30" fill="black"/>
-                        <rect x="10" y="160" width="30" height="30" fill="black"/>
-                        <rect x="20" y="20" width="10" height="10" fill="white"/>
-                        <rect x="170" y="20" width="10" height="10" fill="white"/>
-                        <rect x="20" y="170" width="10" height="10" fill="white"/>
-                        
-                        {/* Random QR pattern */}
-                        <rect x="50" y="15" width="5" height="5" fill="black"/>
-                        <rect x="60" y="15" width="5" height="5" fill="black"/>
-                        <rect x="75" y="15" width="5" height="5" fill="black"/>
-                        <rect x="85" y="15" width="10" height="5" fill="black"/>
-                        <rect x="105" y="15" width="5" height="5" fill="black"/>
-                        <rect x="120" y="15" width="5" height="5" fill="black"/>
-                        <rect x="135" y="15" width="10" height="5" fill="black"/>
-                        
-                        <rect x="50" y="25" width="10" height="5" fill="black"/>
-                        <rect x="70" y="25" width="5" height="5" fill="black"/>
-                        <rect x="85" y="25" width="5" height="5" fill="black"/>
-                        <rect x="100" y="25" width="15" height="5" fill="black"/>
-                        <rect x="125" y="25" width="5" height="5" fill="black"/>
-                        <rect x="140" y="25" width="5" height="5" fill="black"/>
-                        
-                        {/* More pattern continues... */}
-                        <rect x="15" y="50" width="5" height="5" fill="black"/>
-                        <rect x="25" y="50" width="10" height="5" fill="black"/>
-                        <rect x="45" y="50" width="5" height="5" fill="black"/>
-                        <rect x="60" y="50" width="15" height="5" fill="black"/>
-                        <rect x="85" y="50" width="5" height="5" fill="black"/>
-                        <rect x="100" y="50" width="5" height="5" fill="black"/>
-                        <rect x="115" y="50" width="10" height="5" fill="black"/>
-                        <rect x="135" y="50" width="5" height="5" fill="black"/>
-                        <rect x="150" y="50" width="5" height="5" fill="black"/>
-                        <rect x="165" y="50" width="10" height="5" fill="black"/>
-                        <rect x="185" y="50" width="5" height="5" fill="black"/>
-                      </svg>
-                    </div>
-                  </div>
-                  
-                  {/* Google Pay logo */}
-                  <div className="flex items-center justify-center gap-2 mt-3">
-                    <div className="flex items-center gap-1">
-                      <div className="w-4 h-4 bg-blue-500 rounded-sm"></div>
-                      <div className="w-4 h-4 bg-red-500 rounded-sm"></div>
-                      <div className="w-4 h-4 bg-yellow-500 rounded-sm"></div>
-                      <div className="w-4 h-4 bg-green-500 rounded-sm"></div>
-                    </div>
-                    <span className="text-gray-600 text-sm font-medium">Google Pay</span>
-                  </div>
-                </div>
-
-                {/* Bank Details */}
-                <div className="bg-gray-100 rounded-xl p-3 mt-4">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">U</span>
-                      </div>
-                      <span className="text-gray-800 font-medium text-sm">Union Bank Of India - 2843</span>
-                    </div>
-                    <button className="text-blue-500 text-sm font-medium">Change bank</button>
-                  </div>
-                </div>
+            <div className="flex justify-center my-6">
+              <div className="w-64 h-64 bg-white rounded-lg overflow-hidden shadow-xl shadow-blue-500/20">
+                <img 
+                  src="/payment.png" 
+                  alt="Payment QR Code" 
+                  className="w-full h-full object-contain"
+                />
               </div>
             </div>
 
             <div className="space-y-2 mt-6">
-              <p className="text-blue-200 font-semibold">📱 Scan QR Code to Pay ₹50</p>
-              <p className="text-blue-200/70 text-sm">Or use UPI ID: yashsrivastava@unionbank</p>
+              <p className="text-blue-200 font-semibold text-lg">📱 Scan QR Code to Pay ₹160</p>
             </div>
           </div>
         </div>
@@ -346,7 +265,7 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
             <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4 mb-4">
               <p className="text-orange-200 text-sm font-medium mb-2">⚠️ Important Instructions:</p>
               <ul className="text-orange-200/80 text-sm space-y-1 list-disc list-inside">
-                <li>Pay exactly ₹50 using the QR code above</li>
+                <li>Pay exactly ₹160 using the QR code above</li>
                 <li>Take a clear screenshot of the payment confirmation</li>
                 <li>Upload the screenshot below to complete registration</li>
                 <li>Only JPG/PNG files are accepted (Max 5MB)</li>
