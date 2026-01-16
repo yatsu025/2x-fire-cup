@@ -46,7 +46,7 @@ export function SuccessMessage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
             <div className="bg-black/30 border border-orange-500/20 rounded-xl p-4 backdrop-blur-sm hover:border-orange-500/40 transition-all">
               <p className="text-orange-400/70 text-xs font-bold uppercase tracking-widest mb-2">Tournament Date</p>
-              <p className="text-orange-200 font-bold text-lg">January 18, 2026</p>
+              <p className="text-orange-200 font-bold text-lg">January 24, 2026</p>
             </div>
             <div className="bg-black/30 border border-orange-500/20 rounded-xl p-4 backdrop-blur-sm hover:border-orange-500/40 transition-all">
               <p className="text-orange-400/70 text-xs font-bold uppercase tracking-widest mb-2">Team Status</p>
@@ -66,7 +66,7 @@ export function SuccessMessage() {
         </button>
 
         <p className="text-orange-400/60 text-sm font-semibold">
-          Tournament starts on January 18th • May the best team win! 🔥
+          Tournament starts on January 24th • May the best team win! 🔥
         </p>
       </div>
     </div>

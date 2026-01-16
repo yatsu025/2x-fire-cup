@@ -48,7 +48,7 @@ export function CountdownTimer() {
           ⏰ Registration Closes In
         </p>
         <p className="text-xs sm:text-sm text-red-400/70 font-semibold tracking-wide">
-          Registration closes January 24, 2026 • 12:00 AM
+          Registration closes January 23, 2026 • 12:00 AM
         </p>
       </div>
 

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 interface FormData {
+  teamName: string
   name: string
   contact: string
   playerType: "solo" | "duo" | "squad" | ""
@@ -19,6 +20,7 @@ interface FormData {
 
 export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => void }) {
   const [formData, setFormData] = useState<FormData>({
+    teamName: "",
     name: "",
     contact: "",
     playerType: "",
@@ -35,8 +37,10 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  const isTeamNameFilled = formData.teamName.trim().length > 0
   const isNameFilled = formData.name.trim().length > 0
   const isContactValid = /^\d{10}$/.test(formData.contact)
+  const canShowName = isTeamNameFilled
   const canShowContact = isNameFilled
   const canShowPlayerType = isContactValid
   const canShowPlayerDetails = canShowPlayerType && formData.playerType !== ""
@@ -62,6 +66,7 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {}
 
+    if (!formData.teamName.trim()) newErrors.teamName = "Team name is required"
     if (!formData.name.trim()) newErrors.name = "Name is required"
     if (!formData.contact.trim()) {
       newErrors.contact = "Contact number is required"
@@ -144,27 +149,43 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
       <div className="space-y-6">
         <div className="flex items-center gap-4 mb-8 pb-4 border-b border-orange-500/30">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center text-white font-black text-xl shadow-lg shadow-orange-600/50">
-            3
+            1
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-orange-300 to-red-300">
-            Squad Members
+            Team Details
           </h2>
         </div>
 
         <div className="space-y-6">
           <div>
-            <Label htmlFor="name" className="text-base text-orange-200 font-bold mb-3 block">
-              Name
+            <Label htmlFor="teamName" className="text-base text-orange-200 font-bold mb-3 block">
+              Team Name
             </Label>
             <Input
-              id="name"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+              id="teamName"
+              placeholder="Enter your team name"
+              value={formData.teamName}
+              onChange={(e) => setFormData({ ...formData, teamName: e.target.value })}
               className="bg-black/40 border-orange-500/30 text-white placeholder:text-gray-500 focus:border-orange-400 focus:ring-orange-500/30 text-lg py-3 rounded-xl backdrop-blur-sm transition-all"
             />
-            {errors.name && <p className="text-red-400 text-sm mt-2 font-medium">{errors.name}</p>}
+            {errors.teamName && <p className="text-red-400 text-sm mt-2 font-medium">{errors.teamName}</p>}
           </div>
+
+          {canShowName && (
+            <div>
+              <Label htmlFor="name" className="text-base text-orange-200 font-bold mb-3 block">
+                Name
+              </Label>
+              <Input
+                id="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="bg-black/40 border-orange-500/30 text-white placeholder:text-gray-500 focus:border-orange-400 focus:ring-orange-500/30 text-lg py-3 rounded-xl backdrop-blur-sm transition-all"
+              />
+              {errors.name && <p className="text-red-400 text-sm mt-2 font-medium">{errors.name}</p>}
+            </div>
+          )}
 
           {canShowContact && (
             <div>
@@ -461,7 +482,11 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
             <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4 mb-4">
               <p className="text-orange-200 text-sm font-medium mb-2">⚠️ Important Instructions:</p>
               <ul className="text-orange-200/80 text-sm space-y-1 list-disc list-inside">
-                <li>Pay exactly ₹160 using the QR code above</li>
+                <li>
+                  {paymentAmount > 0
+                    ? <>Pay exactly ₹{paymentAmount} using the QR code above</>
+                    : "Pay the registration fee using the QR code above"}
+                </li>
                 <li>Take a clear screenshot of the payment confirmation</li>
                 <li>Upload the screenshot below to complete registration</li>
                 <li>Only JPG/PNG files are accepted (Max 5MB)</li>
