@@ -4,6 +4,7 @@ import type React from "react"
 import { useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import axios from "axios"
 
 interface FormData {
   teamName: string
@@ -121,8 +122,12 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
 
     setIsSubmitting(true)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      onSubmitSuccess()
+      const response = await axios.post("/api/publish" , {...formData , paymentScreenshot : "You need pass link of sc"})
+      if(response.data.success){
+        onSubmitSuccess();
+      }else{
+        throw new Error("Please contact devloper !!!")
+      }
     } finally {
       setIsSubmitting(false)
     }
