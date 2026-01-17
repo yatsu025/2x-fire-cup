@@ -106,7 +106,7 @@ export default function Home() {
 
         <div className="relative z-10 mt-16 text-center space-y-3">
           <p className="text-orange-400/80 text-sm font-medium">© 2026 2X Fire Cup. All rights reserved.</p>
-          <p className="text-orange-500/60 text-xs tracking-widest uppercase">Powered by Fire 🔥</p>
+          <p className="text-orange-500/60 text-xs tracking-widest uppercase">Developed by Yash Srivatava</p>
         </div>
       </section>
     </div>
