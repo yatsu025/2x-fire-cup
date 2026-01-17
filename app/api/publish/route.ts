@@ -6,7 +6,7 @@ export async function POST(req : NextRequest , res : NextResponse) {
         const playersString = body.players
   .map((p : any, i : number) => `P${i + 1}: ${p.uid || 'N/A'}`)
   .join(' | \n');
-        const res = await update([body.teamName , body.name , body.contact , body.playerType , body.gameType , playersString , body.paymentScreenshot]);
+        const res = await update([body.teamName , body.name , body.contact , body.playerType , body.gameType , playersString , body.transactionId]);
         console.log("Google Sheets API response:", res);
         return NextResponse.json({
             message : "Data saved succefully !!!",

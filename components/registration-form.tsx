@@ -16,7 +16,7 @@ interface FormData {
     name: string
     uid: string
   }>
-  paymentScreenshot: File | null
+  transactionId: string
 }
 
 export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => void }) {
@@ -32,7 +32,7 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
       { name: "", uid: "" },
       { name: "", uid: "" },
     ],
-    paymentScreenshot: null,
+    transactionId: "",
   })
 
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -110,7 +110,7 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
       }
     }
 
-    if (!formData.paymentScreenshot) newErrors.paymentScreenshot = "Payment screenshot is required"
+    if (!formData.transactionId.trim()) newErrors.transactionId = "Transaction ID is required"
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -122,7 +122,7 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
 
     setIsSubmitting(true)
     try {
-      const response = await axios.post("/api/publish" , {...formData , paymentScreenshot : "You need pass link of sc"})
+      const response = await axios.post("/api/publish", formData)
       if(response.data.success){
         onSubmitSuccess();
       }else{
@@ -137,16 +137,6 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
     const newPlayers = [...formData.players]
     newPlayers[index][field] = value
     setFormData({ ...formData, players: newPlayers })
-  }
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null
-    if (file && !["image/jpeg", "image/png"].includes(file.type)) {
-      setErrors({ ...errors, paymentScreenshot: "Only JPG and PNG files are allowed" })
-      return
-    }
-    setFormData({ ...formData, paymentScreenshot: file })
-    setErrors({ ...errors, paymentScreenshot: "" })
   }
 
   return (
@@ -480,8 +470,8 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
         <div className="bg-black/30 border border-orange-500/20 rounded-xl p-6 backdrop-blur-sm">
           <div className="space-y-4">
             <div className="flex items-center gap-2 mb-4">
-              <span className="text-orange-300 text-xl">📸</span>
-              <h4 className="text-lg font-bold text-orange-200">Upload Payment Screenshot</h4>
+              <span className="text-orange-300 text-xl">�</span>
+              <h4 className="text-lg font-bold text-orange-200">Enter Transaction ID</h4>
             </div>
             
             <div className="bg-orange-900/20 border border-orange-500/30 rounded-lg p-4 mb-4">
@@ -492,34 +482,29 @@ export function RegistrationForm({ onSubmitSuccess }: { onSubmitSuccess: () => v
                     ? <>Pay exactly ₹{paymentAmount} using the QR code above</>
                     : "Pay the registration fee using the QR code above"}
                 </li>
-                <li>Take a clear screenshot of the payment confirmation</li>
-                <li>Upload the screenshot below to complete registration</li>
-                <li>Only JPG/PNG files are accepted (Max 5MB)</li>
+                <li>After payment, note your transaction / UPI reference ID</li>
+                <li>Enter the exact transaction ID below to complete registration</li>
               </ul>
             </div>
 
-            <label className="block border-2 border-dashed border-orange-500/50 rounded-xl p-8 hover:border-orange-400 transition-all cursor-pointer bg-black/20 hover:bg-black/40 text-center group">
-              <input type="file" onChange={handleFileChange} accept="image/jpeg,image/png" className="hidden" />
-              <div className="space-y-3">
-                <div className="text-4xl group-hover:scale-110 transition-transform">📱</div>
-                <div className="text-orange-300 font-bold text-lg">Click to Upload Payment Screenshot</div>
-                <p className="text-orange-200/60 text-sm">JPG or PNG (Max 5MB)</p>
-                {formData.paymentScreenshot && (
-                  <div className="bg-green-900/30 border border-green-500/50 rounded-lg p-3 mt-4">
-                    <p className="text-green-400 text-sm font-semibold flex items-center justify-center gap-2">
-                      <span>✓</span>
-                      <span>{formData.paymentScreenshot.name}</span>
-                    </p>
-                  </div>
-                )}
-              </div>
-            </label>
-            {errors.paymentScreenshot && (
-              <p className="text-red-400 text-sm mt-3 font-medium flex items-center gap-2">
-                <span>⚠️</span>
-                {errors.paymentScreenshot}
-              </p>
-            )}
+            <div className="space-y-3">
+              <Label htmlFor="transactionId" className="text-base text-orange-200 font-bold mb-1 block">
+                Transaction ID
+              </Label>
+              <Input
+                id="transactionId"
+                placeholder="Enter your payment transaction ID"
+                value={formData.transactionId}
+                onChange={(e) => setFormData({ ...formData, transactionId: e.target.value })}
+                className="bg-black/40 border-orange-500/50 text-white placeholder:text-gray-500 focus:border-orange-400 focus:ring-orange-500/30 text-base py-3 rounded-xl backdrop-blur-sm transition-all"
+              />
+              {errors.transactionId && (
+                <p className="text-red-400 text-sm mt-2 font-medium flex items-center gap-2">
+                  <span>⚠️</span>
+                  {errors.transactionId}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
