@@ -32,8 +32,7 @@ A modern, responsive web application for registering teams for the ultimate Free
 
 ### 💳 Payment System
 - Dynamic QR codes based on team size
-- Secure payment screenshot upload
-- File validation (JPG/PNG, 5MB max)
+- inpur a transection ID
 - Payment confirmation workflow
 
 ## 🛠️ Tech Stack
